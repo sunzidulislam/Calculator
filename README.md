@@ -3,6 +3,7 @@
 <p align =left>
   <a href="https://github.com/JustABeginning/Java-Calculator#JAB"><img src="https://img.shields.io/badge/language-Java-brightgreen" alt="Language Used"></a>
   <a href="https://github.com/JustABeginning/Java-Calculator#JAB"><img src="https://img.shields.io/github/last-commit/JustABeginning/Java-Calculator" alt="GitHub last commit"></a>
+  <a href="https://twitter.com/UnusualCoderJAB/status/1563506476249133060"><img src="https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2FUnusualCoderJAB"></a>
 </p>
 
 A Terminal based Calculator built with Java
