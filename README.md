@@ -52,3 +52,7 @@ A Terminal based Calculator built with Java
 |`sinir()`|sin<sup>-1</sup> (in *radian*)|
 |`cosir()`|cos<sup>-1</sup> (in *radian*)|
 |`tanir()`|tan<sup>-1</sup> (in *radian*)|
+
+## 🧋 Contribution
+
+Pull requests and issue reports are welcome 😊 !
