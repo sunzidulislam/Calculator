@@ -56,4 +56,4 @@ A Terminal based Calculator built with Java
 
 ## 🧋 Contribution
 
-Pull requests and issue reports are welcome 😊 !
+Pull requests, issue reports and suggestions are welcome 😊 !
