@@ -20,6 +20,8 @@ A Terminal based Calculator built with Java
 
 ## Usage
 
+### From Source
+
 1. Compile the `Calculator.java` file
 
     ```console
@@ -32,6 +34,12 @@ A Terminal based Calculator built with Java
     foo@bar:~$ java Calculator
     ```
 
+### Via JAR
+
+  ```console
+  foo@bar:~$ java -jar Calculator.jar
+  ```
+
 <h3 align=center>Preview</h3>
 
 [![Usage Preview](Images/Usage.gif)](https://github.com/JustABeginning/Java-Calculator#JAB)
@@ -41,7 +49,7 @@ A Terminal based Calculator built with Java
 |Syntax|Meaning|
 |:---:|:---:|
 |a `^` b|a<sup>b</sup>|
-|a <code>&#124;</code> b|a<sup>(1/b)</sup>|
+|b <code>&#124;</code> a|a<sup>(1/b)</sup>|
 |`n!`|Factorial of `n`|
 |`log()`|log<sub>10</sub>|
 |`ln()`|log<sub>e</sub>|
