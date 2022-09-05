@@ -34,15 +34,15 @@ A Terminal based Calculator built with Java
     foo@bar:~$ java Calculator
     ```
 
+<h3 align=center>Preview</h3>
+
+[![Usage Preview](Images/Usage.gif)](https://github.com/JustABeginning/Java-Calculator#JAB)
+
 ### Via JAR
 
   ```console
   foo@bar:~$ java -jar Calculator.jar
   ```
-
-<h3 align=center>Preview</h3>
-
-[![Usage Preview](Images/Usage.gif)](https://github.com/JustABeginning/Java-Calculator#JAB)
 
 ## Commands
 
