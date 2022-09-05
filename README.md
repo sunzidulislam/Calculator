@@ -40,9 +40,11 @@ A Terminal based Calculator built with Java
 
 ### Via JAR
 
-  ```console
-  foo@bar:~$ java -jar Calculator.jar
-  ```
++ Requires Java (>=17)
+
+    ```console
+    foo@bar:~$ java -jar Calculator.jar
+    ```
 
 ## Commands
 
