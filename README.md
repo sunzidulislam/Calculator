@@ -71,7 +71,7 @@ A Terminal based Calculator built with Java
 |`tanir()`|tan<sup>-1</sup> (in *radian*)|
 |`sinh()`|sin [*hyperbolic*]|
 |`cosh()`|cos [*hyperbolic*]|
-|`tan()`|tan [*hyperbolic*]|
+|`tanh()`|tan [*hyperbolic*]|
 
 ## 🧋 Contribution
 
