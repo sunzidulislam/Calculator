@@ -407,7 +407,7 @@ public class Calculator {
 		do {
 			numPost = -1;
 			System.out.println("\nEnter the EXPRESSION :=>\n");
-			String str = br.readLine().trim();
+			String str = br.readLine().trim().replace(" ", "");
 			if (str.length() == 0) {
 				System.out.println("\nSORRY ! You have entered NOTHING");
 				System.out.print("\nEnter 1 to CONTINUE : ");

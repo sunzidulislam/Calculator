@@ -57,12 +57,21 @@ A Terminal based Calculator built with Java
 |`ln()`|log<sub>e</sub>|
 |`rad()`|&deg; to *radian*|
 |`deg()`|*radian* to &deg;|
+|`sin()`|sin (&ang; in &deg;)|
+|`cos()`|cos (&ang; in &deg;)|
+|`tan()`|tan (&ang; in &deg;)|
+|`sinr()`|sin (&ang; in *radian*)|
+|`cosr()`|cos (&ang; in *radian*)|
+|`tanr()`|tan (&ang; in *radian*)|
 |`sini()`|sin<sup>-1</sup> (in &deg;)|
 |`cosi()`|cos<sup>-1</sup> (in &deg;)|
 |`tani()`|tan<sup>-1</sup> (in &deg;)|
 |`sinir()`|sin<sup>-1</sup> (in *radian*)|
 |`cosir()`|cos<sup>-1</sup> (in *radian*)|
 |`tanir()`|tan<sup>-1</sup> (in *radian*)|
+|`sinh()`|sin [*hyperbolic*]|
+|`cosh()`|cos [*hyperbolic*]|
+|`tan()`|tan [*hyperbolic*]|
 
 ## 🧋 Contribution
 
