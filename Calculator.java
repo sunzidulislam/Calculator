@@ -139,7 +139,7 @@ public class Calculator {
             ch = str.charAt(i);
             tmp = i;
             if (Character.isDigit(ch)) {
-                String n = "" + ch;
+                String n = String.valueOf(ch);
                 cp = ch;
                 i++;
                 ch = str.charAt(i);
@@ -153,7 +153,7 @@ public class Calculator {
                 p.link = new List(n);
                 p = p.link;
             } else if (ch == '.') {
-                String n = "" + ch;
+                String n = String.valueOf(ch);
                 cp = ch;
                 i++;
                 ch = str.charAt(i);
@@ -172,9 +172,8 @@ public class Calculator {
                 cp = ch;
                 i++;
             } else if (ch == 'l' || ch == 's' || ch == 'c' || ch == 't' || ch == 'r' || ch == 'd') {
-                String n = "";
                 List stack = null;
-                n += ch;
+                String n = String.valueOf(ch);
                 i++;
                 while (i < l) {
                     ch = str.charAt(i);
@@ -204,7 +203,7 @@ public class Calculator {
                 cp = 'i';
                 i += 2;
             } else if (ch == '(' || ch == ')') {
-                p.link = new List(ch + "");
+                p.link = new List(String.valueOf(ch));
                 p = p.link;
                 cp = ch;
                 i++;
@@ -219,7 +218,7 @@ public class Calculator {
                         k = 'p';
                 } else
                     k = ch;
-                p.link = new List(k + "");
+                p.link = new List(String.valueOf(k));
                 p = p.link;
                 cp = ch;
                 i++;
@@ -248,18 +247,18 @@ public class Calculator {
             } else if (isOp(ch) || ch == 'n' || ch == '!' || expr.node.equals("p")) {
                 char cp = stack.node.charAt(0);
                 while (isPrior(ch, cp)) {
-                    p.link = new List(cp + "");
+                    p.link = new List(String.valueOf(cp));
                     p = p.link;
                     stack = stack.link;
                     cp = stack.node.charAt(0);
                 }
-                List nptr = new List(ch + "");
+                List nptr = new List(String.valueOf(ch));
                 nptr.link = stack;
                 stack = nptr;
             } else if (ch == ')') {
                 char cp = stack.node.charAt(0);
                 while (cp != '(') {
-                    p.link = new List(cp + "");
+                    p.link = new List(String.valueOf(cp));
                     p = p.link;
                     stack = stack.link;
                     cp = stack.node.charAt(0);
