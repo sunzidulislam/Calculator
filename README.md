@@ -51,6 +51,7 @@ A Terminal based Calculator built with Java
 |Syntax|Meaning|
 |:---:|:---:|
 |`e`|Euler's Number|
+|`pi`|<code>&#8508;</code>|
 |`n!`|Factorial of `n`|
 |a `^` b|a<sup>b</sup>|
 |b <code>&#124;</code> a|a<sup>(1/b)</sup>|
