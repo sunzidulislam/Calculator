@@ -143,8 +143,8 @@ public class Calculator {
                 cp = ch;
                 i++;
                 ch = str.charAt(i);
-                while (Character.isDigit(ch) || ch == '.' || ch == 'e' || ch == 'E'
-                        || ((ch == '+' || ch == '-') && (cp == 'e' || cp == 'E'))) {
+                while (Character.isDigit(ch) || ch == '.' || ch == 'E'
+                        || ((ch == '-' || ch == '+') && cp == 'E')) {
                     n += ch;
                     cp = ch;
                     i++;
@@ -157,8 +157,8 @@ public class Calculator {
                 cp = ch;
                 i++;
                 ch = str.charAt(i);
-                while (Character.isDigit(ch) || ch == 'e' || ch == 'E'
-                        || ((ch == '+' || ch == '-') && (cp == 'e' || cp == 'E'))) {
+                while (Character.isDigit(ch) || ch == 'E'
+                        || ((ch == '-' || ch == '+') && cp == 'E')) {
                     n += ch;
                     cp = ch;
                     i++;

@@ -53,6 +53,8 @@ A Terminal based Calculator built with Java
 |a `^` b|a<sup>b</sup>|
 |b <code>&#124;</code> a|a<sup>(1/b)</sup>|
 |`n!`|Factorial of `n`|
+|`ans`|Previous Result|
+|`e`|Euler's Number|
 |`log()`|log<sub>10</sub>|
 |`ln()`|log<sub>e</sub>|
 |`rad()`|&deg; to *radian*|
