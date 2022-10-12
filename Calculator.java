@@ -53,8 +53,7 @@ public class Calculator {
     private static boolean isPrior(char ch, char cp) {
         return (((ch == '+' || ch == '-') && (cp == '+' || cp == '-'))
                 || ((ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '%')
-                        && (cp == '*' || cp == '/' || cp == '^' || cp == '|' || cp == 'n' || cp == '!' || cp == '%'
-                                || cp == 'p'))
+                        && (cp == '*' || cp == '/' || cp == '^' || cp == '|' || cp == '!' || cp == '%'))
                 || ((ch == '^' || ch == '|') && (cp == '^' || cp == '|' || cp == '!')));
     }
 
@@ -404,7 +403,7 @@ public class Calculator {
         return num;
     }
 
-    public static void main(String[] arg) throws IOException {
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int cont = 1;
         do {
