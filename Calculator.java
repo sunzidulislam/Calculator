@@ -1,4 +1,6 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
 
 class MyException extends Exception {
     public MyException(String m) {
@@ -31,7 +33,7 @@ public class Calculator {
     private static double ans;
     private static int numPost;
 
-    public static void dispList(List show) {
+    private static void dispList(List show) {
         while (show != null) {
             System.out.print(show.node + " ");
             show = show.link;
@@ -39,23 +41,23 @@ public class Calculator {
         System.out.println();
     }
 
-    public static boolean isOp(char ch) {
+    private static boolean isOp(char ch) {
         return (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '%' || ch == '^' || ch == '|');
     }
 
-    public static boolean isUnary(char ch, char cp) {
+    private static boolean isUnary(char ch, char cp) {
         return (((ch == '-' || ch == '+') && (isOp(cp) || cp == '('))
                 || (ch == '!' && (Character.isDigit(cp) || cp == ')')));
     }
 
-    public static boolean isPrior(char ch, char cp) {
+    private static boolean isPrior(char ch, char cp) {
         return (((ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '%') && (cp == '*' || cp == '/' || cp == '^'
                 || cp == '|' || cp == 'n' || cp == '!' || cp == '%' || cp == 'p'))
                 || ((ch == '+' || ch == '-') && (cp == '+' || cp == '-'))
                 || ((ch == '^' || ch == '|') && (cp == '^' || cp == '|' || cp == '!')));
     }
 
-    public static double fact(double n) throws MyException {
+    private static double fact(double n) throws MyException {
         if (n < 0)
             throw new MyException("Factorial can't be computed for NEGATIVE number(s), EXITING...");
         else if ((n - (long) n) != 0)
@@ -66,7 +68,7 @@ public class Calculator {
         return f;
     }
 
-    public static double calc(double a, char ch, double b) throws MyException {
+    private static double calc(double a, char ch, double b) throws MyException {
         double res = 0;
         if (ch == '+')
             res = a + b;
@@ -89,7 +91,7 @@ public class Calculator {
         return res;
     }
 
-    public static boolean isMath(String p) {
+    private static boolean isMath(String p) {
         boolean b = false;
         for (int i = 1; i < p.length() - 1; i++) {
             char ch = p.charAt(i);
@@ -101,7 +103,7 @@ public class Calculator {
         return b;
     }
 
-    public static double getResult(List pol) throws MyException {
+    private static double getResult(List pol) throws MyException {
         Double2 stack = null;
         while (pol != null) {
             char ch = pol.node.charAt(0);
@@ -128,7 +130,7 @@ public class Calculator {
         return stack.num;
     }
 
-    public static List getExpr(String str) throws MyException {
+    private static List getExpr(String str) throws MyException {
         str = "(" + str + ")";
         List expr = new List("("), p = expr;
         char cp = '(', ch;
@@ -232,7 +234,7 @@ public class Calculator {
         return expr;
     }
 
-    public static List getPolish(List expr) {
+    private static List getPolish(List expr) {
         List stack = null, pol = null, p = null;
         while (expr != null) {
             char ch = expr.node.charAt(0);
@@ -286,7 +288,7 @@ public class Calculator {
         return pol;
     }
 
-    public static int skipParan(String p) {
+    private static int skipParan(String p) {
         int i = 0;
         while (i < p.length()) {
             if (p.charAt(i) != '(')
@@ -296,7 +298,7 @@ public class Calculator {
         return i;
     }
 
-    public static double parseDouble2(String p) throws MyException {
+    private static double parseDouble2(String p) throws MyException {
         char ch = p.charAt(0);
         double num = 0;
         if (Character.isDigit(ch) || ch == '.') {
