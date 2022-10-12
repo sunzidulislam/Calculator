@@ -53,6 +53,8 @@ A Terminal based Calculator built with Java
 |`e`|Euler's Number|
 |`pi`|<code>&#960;</code>|
 |`n!`|Factorial of `n`|
+|`nCr`|$\frac{n!}{(n-r)!~r!}$|
+|`nPr`|$\frac{n!}{(n-r)!}$|
 |a `^` b|a<sup>b</sup>|
 |b <code>&#124;</code> a|a<sup>(1/b)</sup>|
 |`ans`|Previous Result|
