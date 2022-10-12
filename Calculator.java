@@ -53,8 +53,8 @@ public class Calculator {
     private static boolean isPrior(char ch, char cp) {
         return (((ch == '+' || ch == '-') && (cp == '+' || cp == '-'))
                 || ((ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '%')
-                        && (cp == '*' || cp == '/' || cp == '^'
-                                || cp == '|' || cp == 'n' || cp == '!' || cp == '%' || cp == 'p'))
+                        && (cp == '*' || cp == '/' || cp == '^' || cp == '|' || cp == 'n' || cp == '!' || cp == '%'
+                                || cp == 'p'))
                 || ((ch == '^' || ch == '|') && (cp == '^' || cp == '|' || cp == '!')));
     }
 
@@ -81,14 +81,15 @@ public class Calculator {
             if (b == 0)
                 throw new MyException("Division by ZERO encountered, EXITING...");
             res = a / b;
-        } else if (ch == '%') {
-            if (b == 0)
-                throw new MyException("Division by ZERO encountered, EXITING...");
-            res = (long) Math.round(a) % (long) Math.round(b);
         } else if (ch == '^')
             res = Math.pow(a, b);
         else if (ch == '|')
             res = Math.pow(b, 1 / a);
+        else if (ch == '%') {
+            if (b == 0)
+                throw new MyException("Division by ZERO encountered, EXITING...");
+            res = (long) Math.round(a) % (long) Math.round(b);
+        }
         return res;
     }
 
