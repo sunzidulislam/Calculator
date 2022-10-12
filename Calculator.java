@@ -46,8 +46,8 @@ public class Calculator {
     }
 
     private static boolean isUnary(char ch, char cp) {
-        return (((ch == '-' || ch == '+') && (isOp(cp) || cp == '('))
-                || (ch == '!' && (Character.isDigit(cp) || cp == ')')));
+        return ((ch == '-' || ch == '+') && (isOp(cp) || cp == '('))
+                || (ch == '!' && (Character.isDigit(cp) || cp == ')'));
     }
 
     private static boolean isPrior(char ch, char cp) {
