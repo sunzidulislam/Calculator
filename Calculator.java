@@ -42,7 +42,7 @@ public class Calculator {
     }
 
     private static boolean isOp(char ch) {
-        return (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '%' || ch == '^' || ch == '|');
+        return (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^' || ch == '|' || ch == '%');
     }
 
     private static boolean isUnary(char ch, char cp) {
