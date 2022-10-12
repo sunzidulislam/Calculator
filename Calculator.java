@@ -42,7 +42,8 @@ public class Calculator {
     }
 
     private static boolean isOp(char ch) {
-        return (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^' || ch == '|' || ch == '%');
+        return (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^' || ch == '|' || ch == 'C' || ch == 'P'
+                || ch == '%');
     }
 
     private static boolean isUnary(char ch, char cp) {
@@ -53,8 +54,10 @@ public class Calculator {
     private static boolean isPrior(char ch, char cp) {
         return (((ch == '+' || ch == '-') && (cp == '+' || cp == '-'))
                 || ((ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '%')
-                        && (cp == '*' || cp == '/' || cp == '^' || cp == '|' || cp == '!' || cp == '%'))
-                || ((ch == '^' || ch == '|') && (cp == '^' || cp == '|' || cp == '!')));
+                        && (cp == '*' || cp == '/' || cp == '^' || cp == '|' || cp == '!' || cp == 'C' || cp == 'P'
+                                || cp == '%'))
+                || ((ch == '^' || ch == '|') && (cp == '^' || cp == '|' || cp == '!' || cp == 'C' || cp == 'P'))
+                || ((ch == 'C' || ch == 'P') && (cp == 'C' || cp == 'P' || cp == '!')));
     }
 
     private static double fact(double n) throws MyException {
@@ -84,7 +87,25 @@ public class Calculator {
             res = Math.pow(a, b);
         else if (ch == '|')
             res = Math.pow(b, 1 / a);
-        else if (ch == '%') {
+        else if (ch == 'C') {
+            if (a < 0 || b < 0)
+                throw new MyException("Combination(s) can't be computed for NEGATIVE input(s)");
+            else if ((a - (long) a) != 0 || (b - (long) b) != 0)
+                throw new MyException("Combination(s) can't be computed for FRACTIONAL input(s)");
+            else if (a < b)
+                throw new MyException("Combination(s) can't be computed for (n(= " + a + ") < r(= " + b + "))");
+            else
+                res = fact(a) / (fact(a - b) * fact(b));
+        } else if (ch == 'P') {
+            if (a < 0 || b < 0)
+                throw new MyException("Permutation(s) can't be computed for NEGATIVE input(s)");
+            else if ((a - (long) a) != 0 || (b - (long) b) != 0)
+                throw new MyException("Permutation(s) can't be computed for FRACTIONAL input(s)");
+            else if (a < b)
+                throw new MyException("Permutation(s) can't be computed for (n(= " + a + ") < r(= " + b + "))");
+            else
+                res = fact(a) / fact(a - b);
+        } else if (ch == '%') {
             if (b == 0)
                 throw new MyException("Division by ZERO encountered, EXITING...");
             res = (long) Math.round(a) % (long) Math.round(b);
