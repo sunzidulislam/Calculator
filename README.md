@@ -53,10 +53,10 @@ A Terminal based Calculator built with Java
 |`e`|Euler's Number|
 |`pi`|<code>&#960;</code>|
 |`n!`|Factorial of `n`|
-|`nCr`|$\frac{n!}{(n-r)!~r!}$|
-|`nPr`|$\frac{n!}{(n-r)!}$|
+|n `C` r|$\frac{n!}{(n-r)!~r!}$|
+|n `P` r|$\frac{n!}{(n-r)!}$|
 |a `^` b|a<sup>b</sup>|
-|b <code>&#124;</code> a|a<sup>(1/b)</sup>|
+|b <code>&#124;</code> a|$\sqrt[b]{a}$|
 |`ans`|Previous Result|
 |`log()`|log<sub>10</sub>|
 |`ln()`|log<sub>e</sub>|
