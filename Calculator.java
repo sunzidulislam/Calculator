@@ -32,6 +32,8 @@ class Double2 {
 public class Calculator {
     private static double ans;
     private static int numPost;
+    private static char[] arrOp = { '+', '-', '*', '/', 'n', '^', '|', '!', 'C', 'P', '%', 'p' };
+    private static int[] idOp = { 5, 5, 4, 4, 3, 2, 2, 0, 1, 1, 4, 3 };
 
     private static void dispList(List show) {
         while (show != null) {
@@ -41,23 +43,33 @@ public class Calculator {
         System.out.println();
     }
 
-    private static boolean isOp(char ch) {
+    private static int findOp(char ch) {
+        int x = -1;
+        for (int i = 0; i < arrOp.length; i++) {
+            if (arrOp[i] == ch) {
+                x = i;
+                break;
+            }
+        }
+        return x;
+    }
+
+    private static boolean isBinary(char ch) {
         return (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^' || ch == '|' || ch == 'C' || ch == 'P'
                 || ch == '%');
     }
 
     private static boolean isUnary(char ch, char cp) {
-        return ((ch == '-' || ch == '+') && (isOp(cp) || cp == '('))
+        return ((ch == '-' || ch == '+') && (isBinary(cp) || cp == '('))
                 || (ch == '!' && (Character.isDigit(cp) || cp == ')'));
     }
 
     private static boolean isPrior(char ch, char cp) {
-        return (((ch == '+' || ch == '-') && (cp == '+' || cp == '-'))
-                || ((ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '%')
-                        && (cp == '*' || cp == '/' || cp == '^' || cp == '|' || cp == '!' || cp == 'C' || cp == 'P'
-                                || cp == '%'))
-                || ((ch == '^' || ch == '|') && (cp == '^' || cp == '|' || cp == '!' || cp == 'C' || cp == 'P'))
-                || ((ch == 'C' || ch == 'P') && (cp == 'C' || cp == 'P' || cp == '!')));
+        int i = findOp(ch), j = findOp(cp);
+        if (idOp[i] == 3 && idOp[j] <= idOp[i])
+            return false;
+        else
+            return (idOp[j] <= idOp[i]);
     }
 
     private static double fact(double n) throws MyException {
@@ -117,7 +129,7 @@ public class Calculator {
         boolean b = false;
         for (int i = 1; i < p.length() - 1; i++) {
             char ch = p.charAt(i);
-            if (isOp(ch) || ch == '!') {
+            if (isBinary(ch) || ch == '!') {
                 b = true;
                 break;
             }
@@ -129,7 +141,7 @@ public class Calculator {
         Double2 stack = null;
         while (pol != null) {
             char ch = pol.node.charAt(0);
-            if (isOp(ch)) {
+            if (isBinary(ch)) {
                 stack.link.num = calc(stack.link.num, ch, stack.num);
                 stack = stack.link;
             } else if (ch == 'n')
@@ -231,7 +243,7 @@ public class Calculator {
                 p = p.link;
                 cp = ch;
                 i++;
-            } else if (isOp(ch) || ch == '!') {
+            } else if (isBinary(ch) || ch == '!') {
                 char k;
                 if (isUnary(ch, cp)) {
                     if (ch == '-')
@@ -268,9 +280,9 @@ public class Calculator {
                     nptr.link = stack;
                     stack = nptr;
                 }
-            } else if (isOp(ch) || ch == 'n' || ch == '!' || expr.node.equals("p")) {
+            } else if (isBinary(ch) || ch == 'n' || ch == '!' || expr.node.equals("p")) {
                 char cp = stack.node.charAt(0);
-                while (isPrior(ch, cp)) {
+                while (cp != '(' && isPrior(ch, cp)) {
                     p.link = new List(String.valueOf(cp));
                     p = p.link;
                     stack = stack.link;
