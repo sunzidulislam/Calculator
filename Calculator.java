@@ -270,8 +270,8 @@ public class Calculator {
                 i++;
                 while (i < l) {
                     ch = str.charAt(i);
-                    i++;
                     n += ch;
+                    i++;
                     if (ch == '(') {
                         if (stack == null)
                             stack = new List("(");
@@ -281,6 +281,8 @@ public class Calculator {
                             stack = nptr;
                         }
                     } else if (ch == ')') {
+                        if (stack == null)
+                            invalidExpr();
                         stack = stack.link;
                         if (stack == null) {
                             cp = ch;
