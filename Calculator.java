@@ -32,7 +32,7 @@ class Double2 {
 public class Calculator {
     private static double ans;
     private static int numPost;
-    private static char[] arrOp = { '+', '-', '*', '/', 'n', '^', '|', '!', 'C', 'P', '%', 'p' };
+    private static char[] arrOp = { '+', '-', '*', '/', 'n', '^', '|', '!', 'C', 'P', '%', 'u' };
     private static int[] idOp = { 5, 5, 4, 4, 3, 2, 2, 0, 1, 1, 4, 3 };
 
     private static void dispList(List show) {
@@ -148,7 +148,7 @@ public class Calculator {
                 stack.num = -stack.num;
             else if (ch == '!') {
                 stack.num = fact(stack.num);
-            } else if (pol.node.equals("p"))
+            } else if (ch == 'u')
                 ;
             else {
                 Double2 nptr = new Double2(parseDouble2(pol.node));
@@ -251,7 +251,7 @@ public class Calculator {
                     else if (ch == '!')
                         k = ch;
                     else
-                        k = 'p';
+                        k = 'u';
                 } else
                     k = ch;
                 p.link = new List(String.valueOf(k));
@@ -280,7 +280,7 @@ public class Calculator {
                     nptr.link = stack;
                     stack = nptr;
                 }
-            } else if (isBinary(ch) || ch == 'n' || ch == '!' || expr.node.equals("p")) {
+            } else if (isBinary(ch) || ch == 'n' || ch == '!' || ch == 'u') {
                 char cp = stack.node.charAt(0);
                 while (cp != '(' && isPrior(ch, cp)) {
                     p.link = new List(String.valueOf(cp));
