@@ -32,8 +32,10 @@ class Double2 {
 public class Calculator {
     private static double ans;
     private static int numPost;
-    private static char[] arrOp = { '+', '-', '*', '/', 'n', '^', '|', '!', 'C', 'P', '%', 'u' };
-    private static int[] idOp = { 5, 5, 4, 4, 3, 2, 2, 0, 1, 1, 4, 3 };
+    // Sorted Array
+    private static char[] arrOp = { '!', '%', '*', '+', '-', '/', 'C', 'P', '^', 'n', 'u', '|' };
+    // Tree Level
+    private static int[] idOp = { 0, 4, 4, 5, 5, 4, 1, 1, 2, 3, 3, 2 };
 
     private static void dispList(List show) {
         while (show != null) {
@@ -44,14 +46,19 @@ public class Calculator {
     }
 
     private static int findOp(char ch) {
-        int x = -1;
-        for (int i = 0; i < arrOp.length; i++) {
-            if (arrOp[i] == ch) {
-                x = i;
+        int f = -1, m = f, l = 0, u = arrOp.length - 1;
+        while (l <= u) {
+            m = (l + u) / 2;
+            if (ch > arrOp[m])
+                l = m + 1;
+            else if (ch < arrOp[m])
+                u = m - 1;
+            else {
+                f = m;
                 break;
             }
         }
-        return x;
+        return f;
     }
 
     private static boolean isBinary(char ch) {
