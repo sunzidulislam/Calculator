@@ -213,7 +213,7 @@ public class Calculator {
     }
 
     private static void invalidExpr() throws MyException {
-        throw new MyException("Invalid expression entered, EXITING...");
+        throw new MyException("Invalid expression entered, EXITING . . .");
     }
 
     private static List getExpr(String str) throws MyException {
@@ -385,8 +385,10 @@ public class Calculator {
     }
 
     private static int skipParen(String p) {
-        int i = p.indexOf('(');
-        while (i < p.length()) {
+        // Calling Method takes care of `p.indexOf('(')`;
+        // Last Character of `p` is ')';
+        int i = 1, l = p.length() - 1;
+        while (i < l) {
             if (p.charAt(i) != '(')
                 break;
             i++;
@@ -396,7 +398,10 @@ public class Calculator {
 
     private static boolean isMath(String p) {
         boolean b = false;
-        for (int i = 1; i < p.length() - 1; i++) {
+        // Last Character of `p` is ')';
+        int l = p.length() - 1;
+        // Calling Method takes care of `p.indexOf('(')`;
+        for (int i = 1; i < l; i++) {
             char ch = p.charAt(i);
             if (isValidOp(ch)) {
                 b = true;
@@ -422,8 +427,8 @@ public class Calculator {
             num = ans;
         else if (ch == 'l') {
             char k = p.charAt(1);
+            int i = p.indexOf('(');
             if (k == 'o') {
-                int i = p.indexOf('(');
                 if (i < 3)
                     invalidExpr();
                 p = p.substring(i);
@@ -432,7 +437,7 @@ public class Calculator {
                 else
                     num = Math.log10(parseDouble2(p.substring(skipParen(p))));
             } else if (k == 'n') {
-                p = p.substring(2);
+                p = p.substring(i);
                 if (isMath(p))
                     num = Math.log(getResult(getPolish(getExpr(p))));
                 else
@@ -440,25 +445,20 @@ public class Calculator {
             } else
                 invalidExpr();
         } else if (ch == 's' || ch == 'c' || ch == 't') {
-            if (p.indexOf('(') < 3)
+            int i = p.indexOf('(');
+            if (i < 3)
                 invalidExpr();
-            p = p.substring(3);
             int trad = 0, ti = 0, th = 0;
-            char k = p.charAt(0);
-            if (k == 'r') {
+            char k = p.charAt(3);
+            if (k == 'r')
                 trad = 1;
-                p = p.substring(1);
-            } else if (k == 'i') {
+            else if (k == 'i') {
                 ti = 1;
-                p = p.substring(1);
-                if (p.charAt(0) == 'r') {
+                if (p.charAt(4) == 'r')
                     ti = 2;
-                    p = p.substring(1);
-                }
-            } else if (k == 'h') {
+            } else if (k == 'h')
                 th = 1;
-                p = p.substring(1);
-            }
+            p = p.substring(i);
             double ang = 0;
             if (isMath(p))
                 ang = getResult(getPolish(getExpr(p)));
@@ -497,7 +497,10 @@ public class Calculator {
                     num = (Math.exp(ang) - Math.exp(-ang)) / (Math.exp(ang) + Math.exp(-ang));
             }
         } else if (ch == 'r' || ch == 'd') {
-            p = p.substring(3);
+            int i = p.indexOf('(');
+            if (i < 3)
+                invalidExpr();
+            p = p.substring(i);
             double ang = 0;
             if (isMath(p))
                 ang = getResult(getPolish(getExpr(p)));
@@ -507,7 +510,8 @@ public class Calculator {
                 num = Math.PI * ang / 180;
             else
                 num = 180 * ang / Math.PI;
-        }
+        } else
+            invalidExpr();
         return num;
     }
 
