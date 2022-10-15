@@ -55,6 +55,7 @@ A Terminal based Calculator built with Java
 |`n!`|Factorial of `n`|
 |n `C` r|$\frac{n!}{(n-r)!~r!}$|
 |n `P` r|$\frac{n!}{(n-r)!}$|
+|a `%` b|Modulus or, Remainder|
 |a `^` b|a<sup>b</sup>|
 |b <code>&#124;</code> a|$\sqrt[b]{a}$|
 |`ans`|Previous Result|
