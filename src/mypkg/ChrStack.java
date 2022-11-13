@@ -13,7 +13,9 @@ public class ChrStack {
         top = nptr;
     }
 
-    public char getTop() {
+    public char getTop() throws MyException {
+        if (top == null)
+            throw new MyException("Insufficient PARENTHESIS(s) !");
         return top.getVal();
     }
 

@@ -186,6 +186,28 @@ public class Calculator {
         return stack.getTop();
     }
 
+    private static boolean validParen(char ch, char cp) {
+        if (ch == '(' && (cp == '(' || isBinary(cp)))
+            return true;
+        else if (ch == ')' && !isBinary(cp))
+            return true;
+        else
+            return false;
+    }
+
+    private static int isPower10(char ch, char cp) {
+        int b = 3;
+        if (ch == 'E' && Character.isDigit(cp))
+            b = 1;
+        else if ((ch == '-' || ch == '+') && cp == 'E')
+            b = 2;
+        else if (!(ch == '-' || ch == '+') && cp == 'E')
+            b = -1;
+        else
+            b = 0;
+        return b;
+    }
+
     private static void invalidExpr() throws MyException {
         throw new MyException("Invalid EXPRESSION !");
     }
@@ -204,14 +226,18 @@ public class Calculator {
                 StringBuffer n = new StringBuffer();
                 n.append(ch);
                 cp = ch;
+                int t = i;
                 i++;
                 ch = str.charAt(i);
-                while (Character.isDigit(ch) || ch == '.' || ch == 'E'
-                        || ((ch == '-' || ch == '+') && cp == 'E')) {
+                while (Character.isDigit(ch) || ch == '.' || isPower10(ch, cp) > 0) {
                     n.append(ch);
                     cp = ch;
                     i++;
                     ch = str.charAt(i);
+                }
+                if (isPower10(ch, cp) < 0) {
+                    i = t;
+                    continue;
                 }
                 expr.add(n.toString());
             } else if (ch == '.') {
@@ -221,14 +247,13 @@ public class Calculator {
                 int t = i;
                 i++;
                 ch = str.charAt(i);
-                while (Character.isDigit(ch) || ch == 'E'
-                        || ((ch == '-' || ch == '+') && cp == 'E')) {
+                while (Character.isDigit(ch) || isPower10(ch, cp) > 0) {
                     n.append(ch);
                     cp = ch;
                     i++;
                     ch = str.charAt(i);
                 }
-                if (i == t + 1) {
+                if (i == t + 1 || isPower10(ch, cp) < 0) {
                     i = t;
                     continue;
                 }
@@ -266,7 +291,7 @@ public class Calculator {
                 expr.add("pi");
                 cp = 'i';
                 i += 2;
-            } else if (ch == '(' || ch == ')') {
+            } else if (validParen(ch, cp)) {
                 expr.add(String.valueOf(ch));
                 cp = ch;
                 i++;
@@ -296,7 +321,7 @@ public class Calculator {
         return expr;
     }
 
-    private static StrList getPolish(StrList expr) {
+    private static StrList getPolish(StrList expr) throws MyException {
         ChrStack stack = null;
         StrList pol = null;
         while (!expr.isEmpty()) {
@@ -357,12 +382,18 @@ public class Calculator {
         // Last Character of `p` is ')';
         int l = p.length() - 1;
         // Calling Method takes care of `p.indexOf('(')`;
+        char ch = '(', cp = ch;
         for (int i = 1; i < l; i++) {
-            char ch = p.charAt(i);
+            ch = p.charAt(i);
             if (isValidOp(ch)) {
-                b = true;
-                break;
+                if (isPower10(ch, cp) == 2)
+                    continue;
+                else {
+                    b = true;
+                    break;
+                }
             }
+            cp = ch;
         }
         return b;
     }
