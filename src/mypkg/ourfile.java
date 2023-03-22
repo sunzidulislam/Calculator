@@ -23,6 +23,6 @@ public class newfile{
     int getSize(){
         return this.size;
     }
-    this is branch1;
+    this is branch2;
 
 }
